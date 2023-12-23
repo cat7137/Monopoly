@@ -7,12 +7,14 @@ public class Player {
     private int money;
     private List<Tiles> properties;
     private int position;
+    private boolean inJail;
 
     public Player(String name){
         this.name = name;
         this.money = 1500;
         this.properties = null;
         this.position = 0;
+        this.inJail = false;
     }
 
     public String getName(){
@@ -53,5 +55,25 @@ public class Player {
         return this.position;
     }
 
+    public void setPosition(int moves){
+        if ((position += moves) > 39){
+            int total = 39 - this.position;
+            moves -= total;
+            moves -= 1; //for resetting back to zero;
+            position = 0;
+            position += moves;
+        }
+        else{
+        this.position += moves;
+        }
+    }
+
+    public boolean isInJail(){
+        return this.inJail;
+    }
+
+    public void setInJail(boolean inJail){
+        this.inJail = inJail;
+    }
      
 }
