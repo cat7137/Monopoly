@@ -1,0 +1,10 @@
+package model;
+
+public class Tax extends Tiles {
+
+    public Tax(String name, int cost, int rent, int mortgage, Colors color) {
+        super(name, cost, rent, mortgage, color);
+    }
+    
+    
+}
