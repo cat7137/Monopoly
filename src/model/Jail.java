@@ -6,5 +6,9 @@ public class Jail extends Tiles{
         super(name, cost, rent, mortgage, color);
     
     }
+
+    public void justVisiting(){
+        System.out.println("Just Visiting!");
+    }
     
 }

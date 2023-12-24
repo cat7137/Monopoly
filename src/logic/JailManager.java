@@ -9,13 +9,13 @@ public class JailManager{
     private int turnsInJail = 0;
 
     public void rollToLeave(Player player, Dice dice){
-        if (player.isInJail()){
+        if (player.isInJail() && turnsInJail < MAX_TURNS){
             int roll1 = dice.roll();
             int roll2 = dice.roll();
 
             if(roll1 == roll2){
                 player.setInJail(false);
-                player.setPosition(roll1 + roll2);
+                player.move(roll1 + roll2);
 
             }
             else{
@@ -25,6 +25,17 @@ public class JailManager{
         }
 
     }
+
+    public void takeTurnInJail(Player player, Dice dice){
+        if(turnsInJail == MAX_TURNS){
+            payBail(player);
+            player.setInJail(false);
+        }
+        else{
+        rollToLeave(player, dice);
+        }
+    }
+
     public void payBail(Player player){
         player.loseMoney(50);
     }

@@ -55,7 +55,7 @@ public class Player {
         return this.position;
     }
 
-    public void setPosition(int moves){
+    public void move(int moves){
         if ((position += moves) > 39){
             int total = 39 - this.position;
             moves -= total;
@@ -66,6 +66,10 @@ public class Player {
         else{
         this.position += moves;
         }
+    }
+
+    public void setPosition(int position){
+        this.position = position;
     }
 
     public boolean isInJail(){
