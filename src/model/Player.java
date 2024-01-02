@@ -8,6 +8,7 @@ public class Player {
     private List<Tiles> properties;
     private int position;
     private boolean inJail;
+    private boolean isBankrupt;
 
     public Player(String name){
         this.name = name;
@@ -15,6 +16,7 @@ public class Player {
         this.properties = null;
         this.position = 0;
         this.inJail = false;
+        this.isBankrupt = false;
     }
 
     public String getName(){
@@ -78,6 +80,14 @@ public class Player {
 
     public void setInJail(boolean inJail){
         this.inJail = inJail;
+    }
+
+    public boolean isBankrupt(){
+        return this.isBankrupt;
+    }
+
+    public void setBankrupt(boolean isBankrupt){
+        this.isBankrupt = isBankrupt;
     }
      
 }
