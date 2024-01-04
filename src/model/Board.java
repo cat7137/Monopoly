@@ -55,4 +55,8 @@ public class Board {
         board.add(new Tax("Luxury Tax", 0, 0, 0, Colors.LUXURYTAX));
         board.add(new Tiles("Boardwalk", 0, 0, 0, Colors.DARKBLUE));
     }
+
+    public Tiles getTile(int position){
+        return board.get(position);
+    }
 }
