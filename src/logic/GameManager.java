@@ -242,16 +242,30 @@ public class GameManager {
 
             }
             else if(tile instanceof Chance){
+                System.out.println("Chance!");
                 chanceDeck.drawCard().completeAction(player);
             }
             else if(tile instanceof CommunityChest){
+                System.out.println("Community Chest!");
                 ccDeck.drawCard().completeAction(player);
             }
             else if(tile instanceof FreeParking){
+                System.out.println("Free Parking");
+                FreeParking free = (FreeParking) tile;
+                if (free.getMoneyInMiddle() > 0){
+                    System.out.println(player.getName() + " collected $" + free.getMoneyInMiddle() +"!");
+                    free.collectMoney(player);
+                    free.setMoneyInMiddle(0);
+                }
+                else{
+                    tradeOrContinue(player);
+                }
 
             }
             else if(tile instanceof GoToJail){
-                
+                System.out.println("Go To Jail!");
+                GoToJail goToJail = (GoToJail) tile;
+                goToJail.sendToJail(player);
             }
             else if(tile instanceof Utility){
 
