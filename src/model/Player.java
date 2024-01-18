@@ -129,5 +129,17 @@ public class Player {
     public void offerTrade(Player player, Player other, Tiles tile, Tiles wanted){
         System.out.println(player.getName() + " offers to trade " + tile.getName() + " with " + other.getName() + " for " + wanted.getName());
     }
+
+    @Override
+    public boolean equals(Object other){
+        boolean result = false;
+        if (other instanceof Player) {
+            Player p = (Player) other;
+            if (this.name.equals(p.name)){
+                result = true;
+            }
+        }
+        return result;
+    }
      
 }

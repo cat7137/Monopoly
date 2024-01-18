@@ -268,7 +268,32 @@ public class GameManager {
                 goToJail.sendToJail(player);
             }
             else if(tile instanceof Utility){
-
+                System.out.println("Landed on " + tile.getName());
+                int numUtilities = 0;
+                if(tile.owned() && !(tile.getOwner().equals(player))){
+                    for (Tiles t : tile.getOwner().getProperties()){
+                        if (t instanceof Utility){
+                            numUtilities++;
+                        }
+                    }
+                    if(numUtilities == 1){
+                        Utility utility = (Utility) tile;
+                        utility.setOneUtilityRent(dice);
+                        player.payMoney(tile.getOwner(), utility.getOneUtilityRent());
+                    }
+                    else if (numUtilities == 2){
+                        Utility utility = (Utility) tile;
+                        utility.setTwoUtilityRent(dice);
+                        player.payMoney(tile.getOwner(), utility.getTwoUtilityRent());
+                    }
+                }
+                else if (tile.owned() && tile.getOwner().equals(player)){
+                    tradeOrContinue(player);
+                }
+                else{
+                    buyOrContinue(player, tile);
+                }
+                
             }
             else if (tile instanceof Tax){
                 
