@@ -3,7 +3,6 @@ package logic;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.swing.text.Utilities;
 
 import model.Board;
 import model.Chance;
@@ -181,7 +180,6 @@ public class GameManager {
     }
 
     public void handleSpace(Player player, Tiles tile){
-        //int position = player.getPosition();
         try (Scanner in = new Scanner(System.in)) {
             if (tile instanceof Railroad){
                 Railroad handled = (Railroad) tile;
@@ -217,7 +215,7 @@ public class GameManager {
                 if (player.isInJail()){
                     JailManager manager = new JailManager();
                     while (true){
-                        System.out.println("You're in Jail!\nRoll Doubles\nPay Bail");
+                        System.out.println("You're in Jail!\nRoll Doubles\nPay Bail\nUse Get Out Of Jail Free Card");
                         String answer = in.nextLine();
                         answer.toLowerCase();
                         if(answer.equals("roll doubles")){
@@ -228,8 +226,11 @@ public class GameManager {
                             manager.payBail(player);
                             break;
                         }
+                        else if(answer.equals("use get out of jail free card")){
+                            manager.useGetOutOfJailFreeCard(player);
+                        }
                         else{
-                            System.out.println("Please choose to Roll doubles or Pay Bail!");
+                            System.out.println("Please choose to Roll doubles, Pay Bail, or Use Get Out Of Jail Free Card!");
                         }
                     }
                 }
@@ -237,15 +238,14 @@ public class GameManager {
                     Jail jail = (Jail) tile;
                     jail.justVisiting();
                     tradeOrContinue(player);
-                    //figure out get out of jail free cards 
                 }
 
             }
             else if(tile instanceof Chance){
-
+                chanceDeck.drawCard().completeAction(player);
             }
             else if(tile instanceof CommunityChest){
-
+                ccDeck.drawCard().completeAction(player);
             }
             else if(tile instanceof FreeParking){
 

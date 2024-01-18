@@ -10,6 +10,7 @@ public class Player {
     private int position;
     private boolean inJail;
     private boolean isBankrupt;
+    private boolean hasGetOutOfJailFreeCard;
 
     public Player(String name){
         this.name = name;
@@ -18,6 +19,7 @@ public class Player {
         this.position = 0;
         this.inJail = false;
         this.isBankrupt = false;
+        this.hasGetOutOfJailFreeCard = false;
     }
 
     public String getName(){
@@ -94,6 +96,14 @@ public class Player {
 
     public void setBankrupt(boolean isBankrupt){
         this.isBankrupt = isBankrupt;
+    }
+
+    public boolean hasGetOutOfJailFreeCard(){
+        return hasGetOutOfJailFreeCard;
+    }
+
+    public void setGetOutOfJailFreeCard(boolean hasCard){
+        this.hasGetOutOfJailFreeCard = hasCard;
     }
 
     public boolean acceptTrade(Player player){

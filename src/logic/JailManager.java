@@ -26,6 +26,15 @@ public class JailManager{
 
     }
 
+    public void useGetOutOfJailFreeCard(Player player){
+        if (player.hasGetOutOfJailFreeCard()){
+            player.setInJail(false);
+        }
+        else{
+            System.out.println("You don't have a get out of jail free card!");
+        }
+    }
+
     public void takeTurnInJail(Player player, Dice dice){
         if(turnsInJail == MAX_TURNS){
             payBail(player);

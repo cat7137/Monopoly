@@ -11,10 +11,7 @@ public class GetOutOfJailFreeCard implements ChanceCard, CommunityChestCard {
 
     @Override
     public void completeAction(Player player) {
-        if (player.isInJail()) {
-            player.setInJail(false);
-        }
-        
+        player.setGetOutOfJailFreeCard(true); 
     }
 
     
