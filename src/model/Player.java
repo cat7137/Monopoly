@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     private String name;
@@ -33,6 +34,11 @@ public class Player {
 
     public int loseMoney(int amount){
         return this.money -= amount;
+    }
+
+    public void payMoney(Player other, int amount){
+        this.loseMoney(amount);
+        other.addMoney(amount);
     }
 
     public List<Tiles> getProperties(){
@@ -88,6 +94,30 @@ public class Player {
 
     public void setBankrupt(boolean isBankrupt){
         this.isBankrupt = isBankrupt;
+    }
+
+    public boolean acceptTrade(Player player){
+        System.out.println("Does " + player.getName() + "accept the trade?\nYES\nNO");
+        while(true){
+            try (Scanner in = new Scanner(System.in)) {
+                String answer = in.nextLine();
+                answer.toUpperCase();
+                if (answer.equals("YES")){
+                    return true;
+                }
+                else if(answer.equals("NO")){
+                    return false;
+                }
+                else{
+                    System.out.println("Please enter YES or NO");
+                }
+            }
+        }
+        
+    }
+
+    public void offerTrade(Player player, Player other, Tiles tile, Tiles wanted){
+        System.out.println(player.getName() + " offers to trade " + tile.getName() + " with " + other.getName() + " for " + wanted.getName());
     }
      
 }

@@ -40,6 +40,8 @@ public class Tiles {
      * owner of the tile
      */
     private Player owner;
+
+    private boolean owned;
     
 
 
@@ -92,10 +94,7 @@ public class Tiles {
      * @return true if yes or false if no
      */
     public boolean hasHotel(){
-        if(this.hasHotel == true){
-            return true;
-        }
-        return false;
+        return this.hasHotel;
     }
 
     /**
@@ -142,10 +141,7 @@ public class Tiles {
      * @return true if yes or false if no
      */
     public boolean mortgaged(){
-        if(this.mortgaged == true){
-            return true;
-        }
-        return false;
+        return this.mortgaged;
     }
     /**
      * sets the tiles status to mortgaged or not mortgaged
@@ -170,6 +166,12 @@ public class Tiles {
      */
     public void setOwner(Player owner){
         this.owner = owner;
+        this.owned = true;
+
+    }
+
+    public Player getOwner(){
+        return this.owner;
     }
 
     /**
@@ -177,11 +179,9 @@ public class Tiles {
      * @return
      */
     public boolean owned(){
-        if (this.owner == null){
-            return true;
-        }
-        return false;
+        return this.owned;
     }
+
 
     /**
      * checks to see if a tile iss equal to another
