@@ -214,6 +214,31 @@ public class GameManager {
                 }
             }
             else if(tile instanceof Jail){
+                if (player.isInJail()){
+                    JailManager manager = new JailManager();
+                    while (true){
+                        System.out.println("You're in Jail!\nRoll Doubles\nPay Bail");
+                        String answer = in.nextLine();
+                        answer.toLowerCase();
+                        if(answer.equals("roll doubles")){
+                            manager.takeTurnInJail(player, dice);
+                            break;
+                        }
+                        else if(answer.equals("pay bail")){
+                            manager.payBail(player);
+                            break;
+                        }
+                        else{
+                            System.out.println("Please choose to Roll doubles or Pay Bail!");
+                        }
+                    }
+                }
+                else{
+                    Jail jail = (Jail) tile;
+                    jail.justVisiting();
+                    tradeOrContinue(player);
+                    //figure out get out of jail free cards 
+                }
 
             }
             else if(tile instanceof Chance){
