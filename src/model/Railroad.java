@@ -80,6 +80,10 @@ public class Railroad extends Tiles{
         return super.getMortgage();
     }
 
+    public void completeAction(){
+        
+    }
+
     /**
      * String representation of a railroad
      */

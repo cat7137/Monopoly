@@ -70,142 +70,183 @@ public class GameManager {
         handleSpace(player, landed);
     }
 
-    public void handleSpace(Player player, Tiles tile){
-        int position = player.getPosition();
-        Scanner in = new Scanner(System.in);
-        Tiles handle = tile;
-        if (handle instanceof Railroad){
 
-        }
-        else if(handle instanceof Jail){
-
-        }
-        else if(handle instanceof Chance){
-
-        }
-        else if(handle instanceof CommunityChest){
-
-        }
-        else if(handle instanceof FreeParking){
-
-        }
-        else if(handle instanceof GoToJail){
-            
-        }
-        else if(handle instanceof Utility){
-
-        }
-        else if (handle instanceof Tax){
-            
-        }
-        else if (handle instanceof Go){
-            
-        }
-        else {
-
-            if (player.getProperties().contains(handle)){
-                System.out.println("Trade or continue?");
-                while (true){
-                    String answer = in.nextLine();
-                    answer.toLowerCase();
-                    if (answer.equals("trade")){
-                        System.out.println("Pick a player to trade with");
+    public void buyOrContinue(Player player, Tiles tile){
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.println("What would you like to do?\nBuy\nContinue\n");
                         while (true){
-                            String chosen = in.nextLine();
-                            chosen.toLowerCase();
-                            for (Player p : players){
-                                if (p.getName().toLowerCase().equals(chosen)){
-                                    if (p.isInJail() || p.isBankrupt()){
-                                        System.out.println("Cannot trade with this Player!");
-                                    }
-                                    System.out.println(player.getName() + "chose to trade with " + chosen);
-                                    Tiles wantedTile = null;
-                                    Tiles tradingTile = null;
-                                    while(true){
-                                        System.out.println("Choose a property to trade!");
-                                        String trading = in.nextLine();
-                                        trading.toLowerCase();
-                                        for(Tiles t : player.getProperties()){
-                                            if(t.getName().toLowerCase().equals(trading)){
-                                                tradingTile = t;
-                                            }
-                                        }
-                                        if (tradingTile != null){
-                                            break;
-                                        }
-                                        else{
-                                            System.out.println("Please choose a tile you own!");
-                                        }
-                                    }
-                                    while (true){
-                                        System.out.println("Choose a property to trade for!");
-                                        String tileWanted = in.nextLine();
-                                        tileWanted.toLowerCase();
-                                        for (Tiles t : p.getProperties()){
-                                            if (t.getName().toLowerCase().equals(tileWanted)){
-                                                wantedTile = t;
-                                            }
-                                        }
-                                        if(wantedTile != null){
-                                            break;
-                                        }
-                                        else{
-                                            System.out.println("Please choose a property " + p.getName() + " owns!");
-                                        }
-                                        
-                                    }
-                                    player.offerTrade(player, p, tradingTile, wantedTile);
-                                    boolean accepted = player.acceptTrade(p);
-                                    if (accepted){
-                                        player.removeProperty(tradingTile);
-                                        p.addProperty(tradingTile);
-                                        p.removeProperty(wantedTile);
-                                        player.addProperty(wantedTile);
-                                    }
-                                    else{
-                                        System.out.println(p.getName() + " rejected the trade!");
-                                    }
-                                    break;
+                            String action = in.nextLine();
+                            action.toLowerCase();
+                            if (action.equals("buy")){
+                                if(player.getMoney() > tile.getCost()){
+                                    tile.setOwner(player);
+                                    player.addProperty(tile);
+                                    player.loseMoney(tile.getCost());
                                 }
                                 else{
-                                    System.out.println("Please select an actual player");
+                                    System.out.println("You don't have enough money!");
+                                }
+                                break;
+                            }
+                            else if(action.equals("continue")){
+                                break;
+                            }
+                            System.out.println("Please choose to Buy or Continue");
+                        }
+        }
+
+    }
+
+    public void tradeOrContinue(Player player){
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.println("Trade or continue?");
+                        while (true){
+                            String answer = in.nextLine();
+                            answer.toLowerCase();
+                            if (answer.equals("trade")){
+                                System.out.println("Pick a player to trade with");
+                                while (true){
+                                    String chosen = in.nextLine();
+                                    chosen.toLowerCase();
+                                    for (Player p : players){
+                                        if (p.getName().toLowerCase().equals(chosen)){
+                                            if (p.isInJail() || p.isBankrupt()){
+                                                System.out.println("Cannot trade with this Player!");
+                                            }
+                                            System.out.println(player.getName() + "chose to trade with " + chosen);
+                                            Tiles wantedTile = null;
+                                            Tiles tradingTile = null;
+                                            while(true){
+                                                System.out.println("Choose a property to trade!");
+                                                String trading = in.nextLine();
+                                                trading.toLowerCase();
+                                                for(Tiles t : player.getProperties()){
+                                                    if(t.getName().toLowerCase().equals(trading)){
+                                                        tradingTile = t;
+                                                    }
+                                                }
+                                                if (tradingTile != null){
+                                                    break;
+                                                }
+                                                else{
+                                                    System.out.println("Please choose a tile you own!");
+                                                }
+                                            }
+                                            while (true){
+                                                System.out.println("Choose a property to trade for!");
+                                                String tileWanted = in.nextLine();
+                                                tileWanted.toLowerCase();
+                                                for (Tiles t : p.getProperties()){
+                                                    if (t.getName().toLowerCase().equals(tileWanted)){
+                                                        wantedTile = t;
+                                                    }
+                                                }
+                                                if(wantedTile != null){
+                                                    break;
+                                                }
+                                                else{
+                                                    System.out.println("Please choose a property " + p.getName() + " owns!");
+                                                }
+                                                
+                                            }
+                                            player.offerTrade(player, p, tradingTile, wantedTile);
+                                            boolean accepted = player.acceptTrade(p);
+                                            if (accepted){
+                                                player.removeProperty(tradingTile);
+                                                p.addProperty(tradingTile);
+                                                p.removeProperty(wantedTile);
+                                                player.addProperty(wantedTile);
+                                            }
+                                            else{
+                                                System.out.println(p.getName() + " rejected the trade!");
+                                            }
+                                            break;
+                                        }
+                                        else{
+                                            System.out.println("Please select an actual player");
+                                            break;
+                                        }
+                                    }
                                     break;
                                 }
+                                break;
                             }
+                            else if (answer.equals("continue")){
+                                break;
+                            }
+                            System.out.println("please choose to trade or continue");
+                        }
+        }
+
+    }
+
+    public void handleSpace(Player player, Tiles tile){
+        //int position = player.getPosition();
+        try (Scanner in = new Scanner(System.in)) {
+            if (tile instanceof Railroad){
+                Railroad handled = (Railroad) tile;
+                if (tile.owned()){
+                    if (!tile.getOwner().equals(player)){
+                        int numRailroads = 0;
+                        for(Tiles railroads : tile.getOwner().getProperties()){
+                            if (railroads instanceof Railroad){
+                                numRailroads++;
+                            }
+                        }
+                        switch (numRailroads){
+                            case 2: player.payMoney(tile.getOwner(), handled.getTwoRailroadsRent());
+                            break; 
+                            case 3: player.payMoney(tile.getOwner(), handled.getThreeRailroadsRent());
+                            break;
+                            case 4: player.payMoney(tile.getOwner(), handled.getFourRailroadsRent());
+                            break;
+                            default: player.payMoney(tile.getOwner(), handled.getOneRailroadRent());
                             break;
                         }
-                        break;
                     }
-                    else if (answer.equals("continue")){
-                        break;
+                    else{
+                        System.out.println("You own this Railroad!");
+                        tradeOrContinue(player);
                     }
-                    System.out.println("please choose to trade or continue");
+                }
+                else{
+                    buyOrContinue(player, tile);
                 }
             }
-            else if (!handle.owned()){
-                System.out.println("What would you like to do?\n Buy\nContinue\n");
-                while (true){
-                    String action = in.nextLine();
-                    action.toLowerCase();
-                    if (action.equals("buy")){
-                        if(player.getMoney() > handle.getCost()){
-                            handle.setOwner(player);
-                            player.addProperty(handle);
-                            player.loseMoney(handle.getCost());
-                        }
-                        else{
-                            System.out.println("You don't have enough money!");
-                        }
-                        break;
-                    }
-                    else if(action.equals("continue")){
-                        break;
-                    }
-                    System.out.println("Please choose to Buy or Continue");
-                }
+            else if(tile instanceof Jail){
+
             }
-            else{
-                player.payMoney(handle.getOwner(), handle.getRent());
+            else if(tile instanceof Chance){
+
+            }
+            else if(tile instanceof CommunityChest){
+
+            }
+            else if(tile instanceof FreeParking){
+
+            }
+            else if(tile instanceof GoToJail){
+                
+            }
+            else if(tile instanceof Utility){
+
+            }
+            else if (tile instanceof Tax){
+                
+            }
+            else if (tile instanceof Go){
+                
+            }
+            else {
+                if (player.getProperties().contains(tile)){
+                    tradeOrContinue(player);
+                }
+                else if (!tile.owned()){
+                    buyOrContinue(player, tile);
+                }
+                else{
+                    player.payMoney(tile.getOwner(), tile.getRent());
+                }
             }
         }
     }
