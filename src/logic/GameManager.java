@@ -296,10 +296,23 @@ public class GameManager {
                 
             }
             else if (tile instanceof Tax){
-                
+                if (tile.getName().equals("LuxuryTax")){
+                    System.out.println("Pay Luxury Tax!");
+                    Tax luxury = (Tax) tile;
+                    luxury.payLuxuryTax(player);
+                }
+                else{
+                    System.out.println("Pay Income Tax!");
+                    Tax income = (Tax) tile;
+                    income.payIncomeTax(player);
+                }
+                tradeOrContinue(player);
             }
             else if (tile instanceof Go){
-                
+                System.out.println("Landed on Go! Collect $200!");
+                Go go = (Go) tile;
+                go.addMoney(player);
+                tradeOrContinue(player);
             }
             else {
                 if (player.getProperties().contains(tile)){

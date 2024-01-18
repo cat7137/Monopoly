@@ -70,6 +70,8 @@ public class Player {
             int total = 39 - this.position;
             moves -= total;
             moves -= 1; //for resetting back to zero;
+            System.out.println("Passed Go! Collected $200!");
+            this.addMoney(200);
             position = 0;
             position += moves;
         }
