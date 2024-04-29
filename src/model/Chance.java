@@ -1,3 +1,10 @@
+/**
+ * Chance Tile Class
+ * Author: Cody Thompson
+ * 
+ * Contains all the methods required for Chance Tile interactions
+ */
+
 package model;
 
 import java.util.ArrayList;
@@ -18,6 +25,15 @@ public class Chance extends Tiles {
 
     private List<ChanceCard> chanceCards;
 
+    /**
+     * Chance Tile Constructor
+     * @param name the name of the tile
+     * @param cost the cost of the tile (N/A for Chance)
+     * @param rent the rent of the tile (N/A for Chance)
+     * @param mortgage the mortgage of the tile (N/A for Chance)
+     * @param color the Color of the tile (Chance for Chance)
+     * initializes the Chance deck and shuffles the cards
+     */
     public Chance(String name, int cost, int rent, int mortgage, Colors color) {
         super(name, cost, rent, mortgage, color);
         chanceCards = new ArrayList<>();
@@ -26,6 +42,9 @@ public class Chance extends Tiles {
          
     }
 
+    /**
+     * Initialze the deck of Chance Cards
+     */
     public void initializeChanceCards(){
         Random random = new Random();
         int numPos200Cards = random.nextInt(5);
@@ -49,6 +68,9 @@ public class Chance extends Tiles {
         chanceCards.add(new AdvanceToGoCard());
     }
 
+    /**
+     * Shuffles the cards in the Chance Deck
+     */
     public void shuffleCards(){
         Collections.shuffle(chanceCards);
     }

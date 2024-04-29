@@ -1,3 +1,11 @@
+/**
+ * Enum Class of all the possible Tile Colors
+ * Author: Cody Thompson
+ * 
+ * All the possible Tile colors including Special Tiles
+ * like RailRoads, Tax, Utilities, Jail, etc.
+ */
+
 package model;
 
 public enum Colors {

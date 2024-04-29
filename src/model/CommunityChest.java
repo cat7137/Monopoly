@@ -1,3 +1,10 @@
+/**
+ * Community Chest Tile Class
+ * Author: Cody Thompson
+ * 
+ * Contains all the methods required for Comunity Chest tile interactions
+ */
+
 package model;
 
 import java.util.ArrayList;
@@ -18,6 +25,15 @@ public class CommunityChest extends Tiles {
 
     private List<CommunityChestCard> communityChestCards;
 
+    /**
+     * CommunityChest Constructor
+     * @param name the name of the tile
+     * @param cost the cost of the tile (N/A for Community Chest)
+     * @param rent the rent of the tile (N/A for Community Chest)
+     * @param mortgage the mortgage of the tile (N/A for Community Chest)
+     * @param color the color of the tile (Community Chest for Community Chest)
+     * initializes and shuffles the Community Chest Deck
+     */
     public CommunityChest(String name, int cost, int rent, int mortgage, Colors color) {
         super(name, cost, rent, mortgage, color);
         communityChestCards = new ArrayList<>();
@@ -26,6 +42,9 @@ public class CommunityChest extends Tiles {
          
     }
 
+    /**
+     * Initializes the Community Chest Deck
+     */
     public void initializeChanceCards(){
         Random random = new Random();
         int numPos200Cards = random.nextInt(5);
@@ -49,10 +68,17 @@ public class CommunityChest extends Tiles {
         communityChestCards.add(new AdvanceToGoCard());
     }
 
+    /**
+     * Shuffles the cards in the Community Chest Deck
+     */
     public void shuffleCards(){
         Collections.shuffle(communityChestCards);
     }
 
+    /**
+     * Draws a card in the Community Chest deck
+     * @return the card drawn
+     */
     public CommunityChestCard drawCard(){
         if (communityChestCards.isEmpty()){
             initializeChanceCards();

@@ -1,3 +1,10 @@
+/**
+ * Game Manager Class
+ * Author: Cody Thompson
+ * 
+ * Takes care of all the Game rules
+ */
+
 package logic;
 
 import java.util.List;
@@ -28,6 +35,11 @@ public class GameManager {
     private Dice dice;
 
 
+    /**
+     * Game Manager Constructor
+     * @param players the players in the game
+     * @param board the board 
+     */
     public GameManager(List<Player> players, Board board){
         this.players = players;
         this.board = board;
@@ -36,6 +48,9 @@ public class GameManager {
         dice = new Dice(2);
     }
 
+    /**
+     * Plays the Game
+     */
     public void playGame(){
         while(!gameOver()){
             for (Player current : players){
@@ -44,6 +59,13 @@ public class GameManager {
         }
     }
 
+    /**
+     * Checks if the Game is Over
+     * 
+     * A game is over if all players but one are bankrupt
+     * 
+     * @return true if the game is over, false otherwise
+     */
     public boolean gameOver(){
 
         int numBankrupt = 0;
@@ -56,12 +78,17 @@ public class GameManager {
         if (numBankrupt == numPlayers-1){
             return true; 
         }
-
-
-
         return false;
     }
 
+    /**
+     * Takes a player's turn
+     * 
+     * A Player's turn is taken by rolling the dice,
+     * moving, and handling the space that is landed on
+     * 
+     * @param player the player whose turn it is
+     */
     public void takeTurn(Player player){
         int roll = dice.roll();
         player.move(roll);
@@ -70,6 +97,16 @@ public class GameManager {
     }
 
 
+    /**
+     * Asks if a player wants to buy the tile or continue
+     * 
+     * If a player buys, the player loses that amount of money,
+     * the property is added to the player's list of properties,
+     * and the player is set to be the owner of the property
+     * 
+     * @param player the current player
+     * @param tile the tile landed on
+     */
     public void buyOrContinue(Player player, Tiles tile){
         try (Scanner in = new Scanner(System.in)) {
             System.out.println("What would you like to do?\nBuy\nContinue\n");
@@ -96,6 +133,14 @@ public class GameManager {
 
     }
 
+    /**
+     * Asks if a player wants to Trade or Continue
+     * 
+     * If a Player wants to trade, the player sends an offer to another
+     * player
+     * 
+     * @param player the current player
+     */
     public void tradeOrContinue(Player player){
         try (Scanner in = new Scanner(System.in)) {
             System.out.println("Trade or continue?");
@@ -179,6 +224,11 @@ public class GameManager {
 
     }
 
+    /**
+     * Handles the space a player has landed on
+     * @param player the player that landed on the space
+     * @param tile the current tile
+     */
     public void handleSpace(Player player, Tiles tile){
         try (Scanner in = new Scanner(System.in)) {
             if (tile instanceof Railroad){

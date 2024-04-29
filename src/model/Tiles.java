@@ -1,46 +1,24 @@
+/**
+ * Tiles Class
+ * Author: Cody Thompson
+ * 
+ * Contains all the methods to represent the Board Tiles
+ */
+
 package model;
 
-/**
- * Class for Tiles in the game
- */
-public class Tiles {
-    /**
-     * cost of the tile
-     */
-    private int cost;
-    /**
-     * rent the tile pays
-     */
-    private int rent;
-    /**
-     * number of houses a tile currently has
-     */
-    private int numHouses;
-    /**
-     * does the tile have a hotel
-     */
-    private boolean hasHotel;
-    /**
-     * how much the tile mortgages for
-     */
-    private int mortgage;
-    /**
-     * name of the tile
-     */
-    private String name;
-    /**
-     * has the tile been mortgaged
-     */
-    private boolean mortgaged;
-    /**
-     * color associated with tile
-     */
-    private Colors color;
-    /**
-     * owner of the tile
-     */
-    private Player owner;
 
+public class Tiles {
+    
+    private int cost;
+    private int rent;
+    private int numHouses;
+    private boolean hasHotel;
+    private int mortgage;
+    private String name;
+    private boolean mortgaged;
+    private Colors color;
+    private Player owner;
     private boolean owned;
     
 
@@ -66,7 +44,7 @@ public class Tiles {
     }
 
     /**
-     * gets the cost of the tile
+     * Gets the cost of the tile
      * @return cost 
      */
     public int getCost(){
@@ -74,7 +52,7 @@ public class Tiles {
     }
 
     /**
-     * gets the rent for the tile
+     * Gets the rent for the tile
      * @return rent
      */
     public int getRent(){
@@ -82,7 +60,7 @@ public class Tiles {
     }
 
     /**
-     * sets the new rent amount (based on numHouses)
+     * Sets the new rent amount (based on numHouses)
      * @param newRentAmount
      */
     public void setRent(int newRentAmount){
@@ -90,7 +68,7 @@ public class Tiles {
     }
 
     /**
-     * checks to see if the tile has a hotel 
+     * Checks to see if the tile has a hotel 
      * @return true if yes or false if no
      */
     public boolean hasHotel(){
@@ -98,7 +76,7 @@ public class Tiles {
     }
 
     /**
-     * sets tiles status to has a hotel
+     * Sets tiles status to has a hotel
      * @param hasHotel 
      */
     public void setHotel(boolean hasHotel){
@@ -106,14 +84,14 @@ public class Tiles {
     }
 
     /**
-     * gets number of houses the tile has
+     * Gets number of houses the tile has
      * @return numHouses
      */
     public int getNumHouses(){
         return this.numHouses;
     }
     /**
-     * sets the number of houses the tile has
+     * Sets the number of houses the tile has
      * @param numHouses the number of houses
      */
     public void setNumHouses(int numHouses){
@@ -121,7 +99,7 @@ public class Tiles {
     }
 
     /**
-     * gets the mortgage amount for the tile
+     * Gets the mortgage amount for the tile
      * @return mortgage
      */
     public int getMortgage(){
@@ -129,7 +107,7 @@ public class Tiles {
     }
 
     /**
-     * gets the name of the tile
+     * Gets the name of the tile
      * @return name
      */
     public String getName(){
@@ -137,14 +115,14 @@ public class Tiles {
     }
 
     /**
-     * checks to see if the tile has been mortgaged
+     * Checks to see if the tile has been mortgaged
      * @return true if yes or false if no
      */
     public boolean mortgaged(){
         return this.mortgaged;
     }
     /**
-     * sets the tiles status to mortgaged or not mortgaged
+     * Sets the tiles status to mortgaged or not mortgaged
      * @param mortgaged true or false
      */
     public void setMortgage(boolean mortgaged){
@@ -153,7 +131,7 @@ public class Tiles {
     }
 
     /**
-     * gets the color of the tile
+     * Gets the color of the tile
      * @return color
      */
     public Colors getColor(){
@@ -161,7 +139,7 @@ public class Tiles {
     }
 
     /**
-     * sets an owner to the tile
+     * Sets an owner to the tile
      * @param owner
      */
     public void setOwner(Player owner){
@@ -170,12 +148,16 @@ public class Tiles {
 
     }
 
+    /**
+     * Gets the owner of the Tile
+     * @return
+     */
     public Player getOwner(){
         return this.owner;
     }
 
     /**
-     * checks to see if the tile is owned already or not
+     * Checks to see if the tile is owned already or not
      * @return
      */
     public boolean owned(){
@@ -184,7 +166,7 @@ public class Tiles {
 
 
     /**
-     * checks to see if a tile iss equal to another
+     * Checks to see if a tile is equal to another
      */
     @Override
     public boolean equals(Object obj) {

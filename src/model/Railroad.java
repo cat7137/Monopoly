@@ -1,7 +1,13 @@
-package model;
 /**
- * class that represents a Railroad tile
+ * Railroad Class
+ * Author: Cody Thompson
+ * 
+ * Contains all the methods required for Railroad interactions
  */
+
+
+package model;
+
 public class Railroad extends Tiles{
 
     /**
@@ -38,28 +44,28 @@ public class Railroad extends Tiles{
     }
 
     /**
-     * gets the rent for OneRailRoad
+     * Gets the rent for OneRailRoad
      * @return
      */
     public int getOneRailroadRent(){
         return this.oneRailroadRent;
     }
     /**
-     * gets the rent for TwoRailroads
+     * Gets the rent for TwoRailroads
      * @return
      */
     public int getTwoRailroadsRent(){
         return this.twoRailroadsRent;
     }
     /**
-     * gets the rent for ThreeRailroads
+     * Gets the rent for ThreeRailroads
      * @return
      */
     public int getThreeRailroadsRent(){
         return this.threeRailroadsRent;
     }
     /**
-     * gets the rent for FourRailroads
+     * Gets the rent for FourRailroads
      * @return
      */
     public int getFourRailroadsRent(){
@@ -67,14 +73,14 @@ public class Railroad extends Tiles{
     }
 
     /**
-     * gets the cost of a railroad
+     * Gets the cost of a railroad
      */
     public int getCost(){
         return super.getCost();
     }
 
     /**
-     * gets the mortgage for the railroad
+     * Gets the mortgage for the railroad
      */
     public int getMortgage(){
         return super.getMortgage();

@@ -1,3 +1,10 @@
+/**
+ * Board Class
+ * Author: Cody Thompson
+ * 
+ * Contains all the methods required for the Board
+ */
+
 package model;
 
 import java.util.ArrayList;
@@ -8,11 +15,17 @@ import java.util.List;
 public class Board {
     private List<Tiles> board;
 
+    /**
+     * Board constructor
+     */
     public Board(){
         this.board = new ArrayList<>();
         initializeBoard();
     }
 
+    /**
+     * Initializes the board with all the tiles
+     */
     public void initializeBoard(){
         board.add(new Go("Go", 0, 0, 0, Colors.GO));
         board.add(new Tiles("Mediterranean Avenue", 0, 0, 0, Colors.BROWN));
@@ -56,6 +69,11 @@ public class Board {
         board.add(new Tiles("Boardwalk", 0, 0, 0, Colors.DARKBLUE));
     }
 
+    /**
+     * Get's the tile at the given position
+     * @param position the position
+     * @return the Tile at the position
+     */
     public Tiles getTile(int position){
         return board.get(position);
     }
